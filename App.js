@@ -1,42 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { createNativeStackNavigator , TransitionPresets} from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen, LoginScreen, OnboardingScreen, SignUpScreen, SplashScreen } from './src/screens';
-import { TailwindProvider } from 'tailwindcss-react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import React, { useEffect, useState, useLayoutEffect } from "react";
+import { StatusBar } from "expo-status-bar";
+import { createNativeStackNavigator, TransitionPresets } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import {
+  HomeScreen,
+  LoginScreen,
+  OnboardingScreen,
+  SignUpScreen,
+  SplashScreen,
+} from "./src/screens";
+import { TailwindProvider } from "tailwindcss-react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Header from "./src/components/HomeScreen/Header";
+import { theme } from "./src/components/theme/theme";
+import { DrawerStack } from "./src/components/navigation/DrawerStack";
+import { AuthStack } from "./src/components/navigation/AuthStack";
+import { UIStore } from "./src/store/store";
 
 export default function App() {
-
-  const Stack = createNativeStackNavigator();
-  const [isFirstLaunch, setFirstLaunch] = useState(false);
+  const [isFirstLaunch, setFirstLaunch] = useState(true);
+  const isAuthenticated = UIStore.useState((state) => state.isAuthenticated);
 
   useEffect(() => {
-    AsyncStorage.getItem("alreadyLaunched").then(value => {
-      if(value === null){
+    AsyncStorage.getItem("alreadyLaunched").then((value) => {
+      if (value === null) {
         AsyncStorage.setItem("alreadyLaunched", "true");
+        setFirstLaunch(false);
+      } else {
         setFirstLaunch(true);
-      }else{
-        setFirstLaunch(false)
       }
-    })
-  }, [])
+    });
+  }, []);
+
+  if (isFirstLaunch) {
+    return <OnboardingScreen setFirstLaunch={() => setFirstLaunch(false)} />;
+  }
 
   return (
     <TailwindProvider>
-      <StatusBar style='auto'/>
-      <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen name='Splash' component={SplashScreen} options={{headerShown: false}}/> */}
-        {!isFirstLaunch && (
-          <Stack.Screen name='Onboard' component={OnboardingScreen} options={{headerShown: false}}/>
-        )}
-        <Stack.Screen name='LogIn' component={LoginScreen} options={{headerShown: false}}/>
-        <Stack.Screen name='SignUp' component={SignUpScreen} options={{headerShown: false}}/>
-        <Stack.Screen name='Home' component={HomeScreen}/>
-      </Stack.Navigator>
-      </NavigationContainer>
+      <StatusBar style="auto" backgroundColor={theme.background} />
+      <NavigationContainer>{isAuthenticated ? <DrawerStack /> : <AuthStack />}</NavigationContainer>
     </TailwindProvider>
   );
 }

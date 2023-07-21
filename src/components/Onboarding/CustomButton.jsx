@@ -1,22 +1,11 @@
-import {StyleSheet, TouchableWithoutFeedback} from 'react-native';
-import React, { useEffect, useState } from 'react';
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
-import {useNavigation} from '@react-navigation/native';
+import { StyleSheet, TouchableWithoutFeedback } from "react-native";
+import React, { useEffect, useState } from "react";
+import Animated, { useAnimatedStyle, withSpring, withTiming } from "react-native-reanimated";
 
-
-const CustomButton = ({flatListRef, flatListIndex, dataLength}) => {
-  const navigation = useNavigation();
-  
+const CustomButton = ({ flatListRef, flatListIndex, dataLength, setFirstLaunch }) => {
   const buttonAnimationStyle = useAnimatedStyle(() => {
     return {
-      width:
-        flatListIndex.value === dataLength - 1
-          ? withSpring(130)
-          : withSpring(80),
+      width: flatListIndex.value === dataLength - 1 ? withSpring(130) : withSpring(80),
       height: 50,
     };
   });
@@ -24,28 +13,20 @@ const CustomButton = ({flatListRef, flatListIndex, dataLength}) => {
     return {
       // width: 30,
       // height: 30,
-      opacity:
-        flatListIndex.value === dataLength - 1 ? withTiming(0) : withTiming(1),
+      opacity: flatListIndex.value === dataLength - 1 ? withTiming(0) : withTiming(1),
       transform: [
         {
-          translateX:
-            flatListIndex.value === dataLength - 1
-              ? withTiming(100)
-              : withTiming(0),
+          translateX: flatListIndex.value === dataLength - 1 ? withTiming(100) : withTiming(0),
         },
       ],
     };
   });
   const textAnimationStyle = useAnimatedStyle(() => {
     return {
-      opacity:
-        flatListIndex.value === dataLength - 1 ? withTiming(1) : withTiming(0),
+      opacity: flatListIndex.value === dataLength - 1 ? withTiming(1) : withTiming(0),
       transform: [
         {
-          translateX:
-            flatListIndex.value === dataLength - 1
-              ? withTiming(0)
-              : withTiming(-100),
+          translateX: flatListIndex.value === dataLength - 1 ? withTiming(0) : withTiming(-100),
         },
       ],
     };
@@ -54,18 +35,15 @@ const CustomButton = ({flatListRef, flatListIndex, dataLength}) => {
     <TouchableWithoutFeedback
       onPress={() => {
         if (flatListIndex.value < dataLength - 1) {
-          flatListRef.current.scrollToIndex({index: flatListIndex.value + 1});
+          flatListRef.current.scrollToIndex({ index: flatListIndex.value + 1 });
         } else {
-          navigation.replace('LogIn');
+          setFirstLaunch();
         }
-      }}>
+      }}
+    >
       <Animated.View style={[styles.container, buttonAnimationStyle]}>
-        <Animated.Text style={[styles.textButton, textAnimationStyle]}>
-          Get Started
-        </Animated.Text>
-        <Animated.Text style={[styles.textButtons, arrowAnimationStyle]}>
-          Next
-        </Animated.Text>
+        <Animated.Text style={[styles.textButton, textAnimationStyle]}>Get Started</Animated.Text>
+        <Animated.Text style={[styles.textButtons, arrowAnimationStyle]}>Next</Animated.Text>
         {/* <Animated.Image
           source={require('../../../assets/ArrowIcon.png')}
           style={[styles.arrow, arrowAnimationStyle]}
@@ -79,27 +57,27 @@ export default CustomButton;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#7E0772',
+    backgroundColor: "#7E0772",
     padding: 10,
     borderRadius: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden',
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
   },
   arrow: {
-    position: 'absolute',
+    position: "absolute",
   },
   textButton: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    position: 'absolute',
-    fontWeight: 'bold'
+    position: "absolute",
+    fontWeight: "bold",
   },
   textButtons: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
-    position: 'absolute',
-    fontWeight: 'bold',
-    alignSelf: 'center',
+    position: "absolute",
+    fontWeight: "bold",
+    alignSelf: "center",
   },
 });
