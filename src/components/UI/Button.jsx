@@ -4,8 +4,10 @@ import { theme } from "../theme/theme";
 
 export default function Button({ bgColor, children, onPress }) {
   return (
-    <TouchableOpacity activeOpacity={theme.touchOpacity} onPress={onPress}>
-      <View style={[styles.ButtonContainer, { backgroundColor: bgColor || theme.primaryColor }]}>
+    <TouchableOpacity activeOpacity={theme.touchOpacity.bold} onPress={onPress}>
+      <View
+        style={[styles.ButtonContainer, { backgroundColor: bgColor || theme.colors.primaryColor }]}
+      >
         <Text style={[styles.buttonText, {}]}>{children}</Text>
       </View>
     </TouchableOpacity>

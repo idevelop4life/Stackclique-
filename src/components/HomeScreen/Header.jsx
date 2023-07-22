@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 const NotificationNumberIndicator = () => {
   return (
     <View style={styles.notificationIcon}>
-      <Text style={{ color: theme.white, flex: 1, justifyContent: "center", marginTop: -2 }}>
+      <Text style={{ color: theme.colors.white, flex: 1, justifyContent: "center", marginTop: -2 }}>
         2
       </Text>
     </View>
@@ -29,54 +29,56 @@ export default function Header({ state, descriptors, navigation, position }) {
   };
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity activeOpacity={0.7}>
+      <TouchableOpacity activeOpacity={theme.touchOpacity.bolder}>
         <Avatar />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleTabNavigationOnPress(0, "Learn")}>
-        <Text
-          style={[
-            styles.headerItem,
-            {
-              borderBottomColor: state.index == 0 && theme.primaryColor,
-              borderBottomWidth: state.index == 0 ? 2 : 0,
-              color: state.index == 0 ? theme.primaryColor : theme.grey,
-              paddingBottom: 4,
-            },
-          ]}
-        >
-          LEARN
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleTabNavigationOnPress(1, "Earn")}>
-        <Text
-          style={[
-            styles.headerItem,
-            {
-              borderBottomColor: state.index == 1 && theme.primaryColor,
-              borderBottomWidth: state.index == 1 ? 2 : 0,
-              color: state.index == 1 ? theme.primaryColor : theme.grey,
-              paddingBottom: 4,
-            },
-          ]}
-        >
-          EARN
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleTabNavigationOnPress(2, "Connect")}>
-        <Text
-          style={[
-            styles.headerItem,
-            {
-              borderBottomColor: state.index == 2 && theme.primaryColor,
-              borderBottomWidth: state.index == 2 ? 2 : 0,
-              color: state.index == 2 ? theme.primaryColor : theme.grey,
-              paddingBottom: 4,
-            },
-          ]}
-        >
-          CONNECT
-        </Text>
-      </TouchableOpacity>
+      <View style={{ flexDirection: "row", flex: 2, justifyContent: "space-evenly" }}>
+        <TouchableOpacity onPress={() => handleTabNavigationOnPress(0, "Learn")}>
+          <Text
+            style={[
+              styles.headerItem,
+              {
+                borderBottomColor: state.index == 0 && theme.colors.primaryColor,
+                borderBottomWidth: state.index == 0 ? 2 : 0,
+                color: state.index == 0 ? theme.colors.primaryColor : theme.colors.grey,
+                paddingBottom: 4,
+              },
+            ]}
+          >
+            LEARN
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleTabNavigationOnPress(1, "Earn")}>
+          <Text
+            style={[
+              styles.headerItem,
+              {
+                borderBottomColor: state.index == 1 && theme.colors.primaryColor,
+                borderBottomWidth: state.index == 1 ? 2 : 0,
+                color: state.index == 1 ? theme.colors.primaryColor : theme.colors.grey,
+                paddingBottom: 4,
+              },
+            ]}
+          >
+            EARN
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleTabNavigationOnPress(2, "Connect")}>
+          <Text
+            style={[
+              styles.headerItem,
+              {
+                borderBottomColor: state.index == 2 && theme.colors.primaryColor,
+                borderBottomWidth: state.index == 2 ? 2 : 0,
+                color: state.index == 2 ? theme.colors.primaryColor : theme.colors.grey,
+                paddingBottom: 4,
+              },
+            ]}
+          >
+            CONNECT
+          </Text>
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity onPress={() => handleTabNavigationOnPress(3, "Notification")}>
         <View style={{ position: "relative" }}>
           <Ionicons name="notifications-outline" size={24} color="black" />
@@ -103,24 +105,24 @@ const styles = StyleSheet.create({
   headerItem: {
     fontWeight: 700,
     fontSize: 15,
-    color: theme.grey,
+    color: theme.colors.grey,
   },
   item1: {
-    borderBottomColor: theme.primaryColor,
+    borderBottomColor: theme.colors.primaryColor,
     borderBottomWidth: 2,
   },
   item2: {
-    borderBottomColor: theme.primaryColor,
+    borderBottomColor: theme.colors.primaryColor,
     borderBottomWidth: 2,
   },
   item3: {
-    borderBottomColor: theme.primaryColor,
+    borderBottomColor: theme.colors.primaryColor,
     borderBottomWidth: 2,
   },
   notificationIcon: {
     height: 15,
     width: 15,
-    backgroundColor: theme.primaryColor,
+    backgroundColor: theme.colors.primaryColor,
     color: theme.white,
     position: "absolute",
     borderRadius: 50,
