@@ -96,11 +96,11 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 4,
     justifyContent: "space-around",
-    backgroundColor: theme.white,
+    backgroundColor: theme.colors.white,
     paddingTop: 25,
     paddingBottom: 10,
     fontWeight: 700,
-    marginTop: 50,
+    marginTop: 30,
   },
   headerItem: {
     fontWeight: 700,
