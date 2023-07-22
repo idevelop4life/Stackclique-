@@ -1,20 +1,10 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { createNativeStackNavigator, TransitionPresets } from "@react-navigation/native-stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { createStackNavigator } from "@react-navigation/stack";
+
 import { NavigationContainer } from "@react-navigation/native";
-import {
-  HomeScreen,
-  LoginScreen,
-  OnboardingScreen,
-  SignUpScreen,
-  SplashScreen,
-} from "./src/screens";
+import { OnboardingScreen } from "./src/screens";
 import { TailwindProvider } from "tailwindcss-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Header from "./src/components/HomeScreen/Header";
 import { theme } from "./src/components/theme/theme";
 import { DrawerStack } from "./src/components/navigation/DrawerStack";
 import { AuthStack } from "./src/components/navigation/AuthStack";
