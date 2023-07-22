@@ -4,6 +4,7 @@ import { LearnScreen, EarnScreen, ConnectScreen, NotificationScreen } from "../.
 
 import { HomeScreen } from "../../screens";
 import Header from "../HomeScreen/Header";
+import HomeHeader from "../HomeScreen/HomeHeader";
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
