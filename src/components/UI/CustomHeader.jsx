@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
@@ -7,7 +7,7 @@ import { theme } from "../theme/theme";
 export default function CustomHeader({ children }) {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity
         activeOpacity={theme.touchOpacity.veryLight}
         style={{ position: "absolute", left: 0 }}
@@ -16,7 +16,7 @@ export default function CustomHeader({ children }) {
         <Ionicons name="chevron-back-outline" size={24} color={theme.colors.grey} />
       </TouchableOpacity>
       <Text style={styles.headerText}>{children}</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
