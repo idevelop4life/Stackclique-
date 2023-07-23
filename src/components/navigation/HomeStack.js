@@ -9,7 +9,7 @@ import {
 } from "../../screens";
 
 import Header from "../HomeScreen/Header";
-import HomeHeader from "../HomeScreen/HomeHeader";
+import { CustomHeader } from "../../components";
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -28,6 +28,13 @@ function HomeTabs() {
 export const HomeStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Landing" component={HomeTabs} options={{ headerShown: false }} />
-    <Stack.Screen name="Search" component={SearchScreen} />
+    <Stack.Screen
+      name="Search"
+      component={SearchScreen}
+      options={{
+        headerTitle: (props) => <CustomHeader {...props} />,
+        headerLeft: () => null,
+      }}
+    />
   </Stack.Navigator>
 );
