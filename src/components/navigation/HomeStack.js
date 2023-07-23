@@ -1,8 +1,13 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { LearnScreen, EarnScreen, ConnectScreen, NotificationScreen } from "../../screens";
+import {
+  LearnScreen,
+  EarnScreen,
+  ConnectScreen,
+  NotificationScreen,
+  SearchScreen,
+} from "../../screens";
 
-import { HomeScreen } from "../../screens";
 import Header from "../HomeScreen/Header";
 import HomeHeader from "../HomeScreen/HomeHeader";
 
@@ -23,5 +28,6 @@ function HomeTabs() {
 export const HomeStack = () => (
   <Stack.Navigator>
     <Stack.Screen name="Landing" component={HomeTabs} options={{ headerShown: false }} />
+    <Stack.Screen name="Search" component={SearchScreen} />
   </Stack.Navigator>
 );

@@ -11,11 +11,10 @@ export default function Avatar({ uri }) {
 
 const styles = StyleSheet.create({
   image: {
-    borderColor: theme.primaryColor,
+    borderColor: theme.colors.primaryColor,
     height: 38,
     width: 38,
     borderWidth: 2,
-    borderColor: theme.primaryColor,
     borderRadius: 50,
   },
 });

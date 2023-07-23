@@ -1,9 +1,9 @@
 export { default as SplashScreen } from "./SplashScreen.jsx";
 export { default as OnboardingScreen } from "./OnboardingScreen.jsx";
 export { default as LoginScreen } from "./LoginScreen.jsx";
-export { default as HomeScreen } from "./HomeScreen.jsx";
 export { default as SignUpScreen } from "./SignUpScreen.jsx";
-export { default as LearnScreen } from "./TabsScreens/LearnScreen.jsx";
-export { default as ConnectScreen } from "./TabsScreens/ConnectScreen.jsx";
-export { default as EarnScreen } from "./TabsScreens/EarnScreen.jsx";
-export { default as NotificationScreen } from "./TabsScreens/NotificationScreen.jsx";
+export { default as LearnScreen } from "./HomeScreens/LearnScreen.jsx";
+export { default as ConnectScreen } from "./HomeScreens/ConnectScreen.jsx";
+export { default as EarnScreen } from "./HomeScreens/EarnScreen.jsx";
+export { default as NotificationScreen } from "./HomeScreens/NotificationScreen.jsx";
+export { default as SearchScreen } from "./HomeScreens/SearchScreen.jsx";

@@ -34,11 +34,11 @@ export default function MyTabBar({ state, descriptors, navigation, position }) {
           });
         };
 
-        const inputRange = state.routes.map((_, i) => i);
-        const opacity = position.interpolate({
-          inputRange,
-          outputRange: inputRange.map((i) => (i === index ? 1 : 0)),
-        });
+        // const inputRange = state.routes.map((_, i) => i);
+        // const opacity = position.interpolate({
+        //   inputRange,
+        //   outputRange: inputRange.map((i) => (i === index ? 1 : 0)),
+        // });
 
         return (
           <TouchableOpacity
