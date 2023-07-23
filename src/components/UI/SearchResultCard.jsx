@@ -21,14 +21,16 @@ export default function SearchResultCard({ courseTitle, stars, reviews, enrolled
             }}
           >
             <View style={{ flexDirection: "row", alignItems: "center", gap: 4 }}>
-              <FontAwesome name="star-o" color={"yellow"} size={24} />
-              <Text style={{ color: theme.colors.grey }}>{stars}</Text>
-              <Text style={{ color: theme.colors.grey }}>({reviews}k Reviews)</Text>
+              <FontAwesome name="star-o" color={"yellow"} size={20} />
+              <Text style={{ color: theme.colors.grey, fontSize: 10 }}>{stars}</Text>
+              <Text style={{ color: theme.colors.grey, fontSize: 10 }}>({reviews}k Reviews)</Text>
             </View>
 
             <View style={{ flexDirection: "row", alignItems: "center", gap: 1 }}>
-              <Ionicons name="person-outline" size={24} color={theme.colors.grey} />
-              <Text style={{ color: theme.colors.grey }}>{enrolledStudent}k Students Enrolled</Text>
+              <Ionicons name="person-outline" size={20} color={theme.colors.grey} />
+              <Text style={{ color: theme.colors.grey, fontSize: 10 }}>
+                {enrolledStudent}k Students Enrolled
+              </Text>
             </View>
           </View>
         </View>
