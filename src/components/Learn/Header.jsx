@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
 import { theme } from "../theme/theme";
 import Avatar from "../UI/Avatar";
 import { Ionicons } from "@expo/vector-icons";
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     paddingBottom: 10,
     fontWeight: 700,
-    marginTop: 30,
+    marginTop: StatusBar.currentHeight || 0,
   },
   headerItem: {
     fontWeight: 700,

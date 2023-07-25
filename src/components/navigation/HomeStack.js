@@ -8,7 +8,7 @@ import {
   SearchScreen,
 } from "../../screens";
 
-import Header from "../HomeScreen/Header";
+import Header from "../Learn/Header";
 import { CustomHeader } from "../../components";
 
 const Stack = createStackNavigator();

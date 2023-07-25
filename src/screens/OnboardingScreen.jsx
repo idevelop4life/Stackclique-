@@ -85,7 +85,7 @@ const OnboardingScreen = ({ setFirstLaunch }) => {
         >
           {item.skip}
         </Animated.Text>
-        <Animated.Image source={item.image} resizeMode={"contain"} style={imageAnimationStyle} />
+        <View>{item.image}</View>
         <Animated.View
           style={[
             textAnimationStyle,
