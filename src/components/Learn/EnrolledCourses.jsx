@@ -59,11 +59,12 @@ export default function EnrolledCourses() {
 const styles = StyleSheet.create({
   scrollContainer: {
     marginTop: 8,
+    maxHeight: 135,
   },
   courseCardContainer: {
     paddingVertical: 12,
     paddingHorizontal: 8,
     backgroundColor: theme.colors.white,
-    gap: 4,
+    gap: 6,
   },
 });
