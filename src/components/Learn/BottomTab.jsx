@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import React from "react";
 import { theme } from "../theme/theme";
 
-export default function BottomTab() {
+export default function BottomTab({ children, height }) {
   return (
     <SafeAreaView style={styles.container}>
       <View
@@ -10,14 +10,12 @@ export default function BottomTab() {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          height: 40,
+          height: height || 76,
           backgroundColor: theme.colors.white,
           width: "100%",
         }}
       >
-        <Text style={{ textAlign: "center", color: theme.colors.grey }}>
-          How to level up on Stack Clique?
-        </Text>
+        <View style={{ alignItems: "center", justifyContent: "center" }}>{children}</View>
       </View>
     </SafeAreaView>
   );
