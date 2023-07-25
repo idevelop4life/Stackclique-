@@ -6,6 +6,7 @@ import {
   ConnectScreen,
   NotificationScreen,
   SearchScreen,
+  CourseDetailsScreen,
 } from "../../screens";
 
 import Header from "../Learn/Header";
@@ -33,6 +34,15 @@ export const HomeStack = () => (
       component={SearchScreen}
       options={{
         headerTitle: (props) => <CustomHeader {...props} />,
+        headerLeft: () => null,
+      }}
+    />
+    <Stack.Screen
+      name="Course-Details"
+      component={CourseDetailsScreen}
+      options={{
+        headerTitle: (props) => <CustomHeader {...props} />,
+        title: "Course Details",
         headerLeft: () => null,
       }}
     />

@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, useWindowDimensions, ImageBackground } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { theme } from "../theme/theme";
 import { Avatar, Button } from "../../components";
 export default function AvailableCourseCard() {
-  const { width, fontScale } = useWindowDimensions();
+  const { width } = useWindowDimensions();
+  const navigation = useNavigation();
   return (
     <View style={[styles.container, { width: 0.9 * width }]}>
       <ImageBackground
@@ -42,7 +44,7 @@ export default function AvailableCourseCard() {
           Requirement: Level 3 and above
         </Text>
         <View style={{ marginVertical: 14.08 }}>
-          <Button>Learn More</Button>
+          <Button onPress={() => navigation.navigate("Course-Details")}>Learn More</Button>
         </View>
       </View>
     </View>
