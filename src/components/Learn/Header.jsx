@@ -14,7 +14,7 @@ const NotificationNumberIndicator = () => {
   );
 };
 
-export default function Header({ state, descriptors, navigation, position }) {
+export default function Header({ state, navigation }) {
   const handleTabNavigationOnPress = (index, name) => {
     isFocused = index == state.index;
     const route = state.routes.find((item) => item.name == name);
@@ -29,7 +29,10 @@ export default function Header({ state, descriptors, navigation, position }) {
   };
   return (
     <View style={styles.headerContainer}>
-      <TouchableOpacity activeOpacity={theme.touchOpacity.bolder}>
+      <TouchableOpacity
+        activeOpacity={theme.touchOpacity.bolder}
+        onPress={() => navigation.openDrawer()}
+      >
         <Avatar />
       </TouchableOpacity>
       <View style={{ flexDirection: "row", flex: 2, justifyContent: "space-evenly" }}>
