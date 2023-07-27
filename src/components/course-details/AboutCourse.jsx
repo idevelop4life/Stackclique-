@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { theme } from "../theme/theme";
 import { EvilIcons } from "@expo/vector-icons";
 
-export default function AboutCourse() {
+export default function AboutCourse({ showModlues, setShowModules }) {
   const [isExpanded, setIsExpanded] = useState(false);
-
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: 600 }}>About Course</Text>
@@ -42,6 +41,35 @@ export default function AboutCourse() {
           </View>
         )}
       </Pressable>
+
+      <View style={{ flexDirection: "row", justifyContent: "space-evenly", marginTop: 15 }}>
+        <Pressable onPress={() => setShowModules(true)}>
+          <Text
+            style={[
+              styles.modulesText,
+              {
+                borderBottomWidth: showModlues ? 2 : 0,
+                color: showModlues ? theme.colors.primaryColor : theme.colors.grey,
+              },
+            ]}
+          >
+            Modules
+          </Text>
+        </Pressable>
+        <Pressable onPress={() => setShowModules(false)}>
+          <Text
+            style={[
+              styles.modulesText,
+              {
+                borderBottomWidth: !showModlues ? 2 : 0,
+                color: !showModlues ? theme.colors.primaryColor : theme.colors.grey,
+              },
+            ]}
+          >
+            Reviews
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -64,6 +92,10 @@ const styles = StyleSheet.create({
   readMore: {
     color: theme.colors.green,
   },
+  modulesText: {
+    fontWeight: 700,
+    fontSize: 17,
+    borderBottomColor: theme.colors.primaryColor,
+    paddingBottom: 4,
+  },
 });
-// #242424, #24242400
-// rgba(36, 36, 36, 1), rgba(36, 36, 36, 0)

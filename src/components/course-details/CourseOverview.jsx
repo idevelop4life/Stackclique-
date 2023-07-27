@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import CourseStats from "./CourseStats";
 import { theme } from "../theme/theme";
 import AboutCourse from "./AboutCourse";
 export default function CourseOverview() {
+  const [showModules, setShowModules] = useState(true);
   return (
     <View style={styles.container}>
       <CourseStats />
-      <AboutCourse />
+      <AboutCourse showModlues={showModules} setShowModules={setShowModules} />
     </View>
   );
 }
