@@ -7,7 +7,7 @@ import {
   SearchScreen,
   CourseDetailsScreen,
 } from "../../screens";
-import Header from "../HomeScreen/Header";
+import Header from "../Learn/Header";
 import { CustomHeader } from "..";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
