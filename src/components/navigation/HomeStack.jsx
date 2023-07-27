@@ -1,4 +1,3 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import {
   LearnScreen,
@@ -6,12 +5,13 @@ import {
   ConnectScreen,
   NotificationScreen,
   SearchScreen,
+  CourseDetailsScreen,
 } from "../../screens";
-
 import Header from "../HomeScreen/Header";
-import { CustomHeader } from "../../components";
+import { CustomHeader } from "..";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
 function HomeTabs() {
@@ -33,6 +33,15 @@ export const HomeStack = () => (
       component={SearchScreen}
       options={{
         headerTitle: (props) => <CustomHeader {...props} />,
+        headerLeft: () => null,
+      }}
+    />
+    <Stack.Screen
+      name="Course-Details"
+      component={CourseDetailsScreen}
+      options={{
+        headerTitle: (props) => <CustomHeader {...props} />,
+        title: "Course Details",
         headerLeft: () => null,
       }}
     />

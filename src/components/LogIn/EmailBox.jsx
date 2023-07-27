@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Button from "../UI/Button";
 
 const EmailBox = () => {
   const [countryPickerVisible, setCountryPickerVisible] = useState(false);
@@ -30,26 +31,10 @@ const EmailBox = () => {
       {/* End Of Phone Input and country code Box  */}
 
       </View>
-      <View style={{marginTop: 50, alignItems: 'center'}}>
-        <Text style={{color: '#24242480', fontSize: 16, fontWeight: '500'}}>Or Login with</Text>
+      <View style={{ marginTop: 100, padding: 10 }}>
+        <Button >Login</Button>
       </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginTop: 20}}>
-        <TouchableOpacity activeOpacity={0.5}>
-          <View style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#E2E2E2', borderRadius:15, paddingHorizontal: 35, paddingVertical: 10}}>
-            <Image source={require("../../../assets/facebook.png")} style={{width: 40, height: 40, alignSelf: 'center'}}/>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5}>
-          <View style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#E2E2E2', borderRadius:15, paddingHorizontal: 35, paddingVertical: 10}}>
-            <Image source={require("../../../assets/google.png")} style={{width: 40, height: 40, alignSelf: 'center'}}/>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5}>
-          <View style={{backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#E2E2E2', borderRadius:15, paddingHorizontal: 35, paddingVertical: 10}}>
-            <Image source={require("../../../assets/apple.png")} style={{width: 40, height: 40, alignSelf: 'center'}}/>
-          </View>
-        </TouchableOpacity>
-      </View>
+      
       <TouchableOpacity activeOpacity={0.8} style={{alignSelf: 'center', marginTop: 150}} onPress={() => {navigation.navigate('SignUp')}}>
         <View>
           <Text style={{fontSize: 15, fontWeight: '500', color: '#7E0772'}}>Click here to Sign up</Text>

@@ -1,9 +1,9 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { HomeStack } from "./HomeStack";
+import { HomeStack } from "./MainStack";
 
 const Drawer = createDrawerNavigator();
 
-export function DrawerStack() {
+export function MainDrawer() {
   return (
     <Drawer.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Drawer.Screen name="Home" component={HomeStack} />
