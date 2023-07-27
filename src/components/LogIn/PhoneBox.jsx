@@ -89,72 +89,11 @@ const PhoneBox = () => {
       </View>
       {/* login button */}
 
-      <View style={{ marginTop: 30 }}>
+      <View style={{ marginTop: 100, padding: 10 }}>
         <Button onPress={handleLogin}>Login</Button>
       </View>
-      <View style={{ marginTop: 50, alignItems: "center" }}>
-        <Text style={{ color: "#24242480", fontSize: 16, fontWeight: "500" }}>Or Login with</Text>
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          marginTop: 20,
-        }}
-      >
-        <TouchableOpacity activeOpacity={0.5}>
-          <View
-            style={{
-              backgroundColor: "#FFFFFF",
-              borderWidth: 1,
-              borderColor: "#E2E2E2",
-              borderRadius: 15,
-              paddingHorizontal: 35,
-              paddingVertical: 10,
-            }}
-          >
-            <Image
-              source={require("../../../assets/facebook.png")}
-              style={{ width: 40, height: 40, alignSelf: "center" }}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5}>
-          <View
-            style={{
-              backgroundColor: "#FFFFFF",
-              borderWidth: 1,
-              borderColor: "#E2E2E2",
-              borderRadius: 15,
-              paddingHorizontal: 35,
-              paddingVertical: 10,
-            }}
-          >
-            <Image
-              source={require("../../../assets/google.png")}
-              style={{ width: 40, height: 40, alignSelf: "center" }}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5}>
-          <View
-            style={{
-              backgroundColor: "#FFFFFF",
-              borderWidth: 1,
-              borderColor: "#E2E2E2",
-              borderRadius: 15,
-              paddingHorizontal: 35,
-              paddingVertical: 10,
-            }}
-          >
-            <Image
-              source={require("../../../assets/apple.png")}
-              style={{ width: 40, height: 40, alignSelf: "center" }}
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
+      
+      
       <TouchableOpacity
         activeOpacity={0.8}
         style={{ alignSelf: "center", marginTop: 150 }}
