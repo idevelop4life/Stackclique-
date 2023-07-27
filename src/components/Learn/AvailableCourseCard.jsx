@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     position: "relative",
     alignSelf: "center",
 
-    minHeight: 371,
+    minHeight: "auto",
     borderRadius: 15.29008,
     overflow: "hidden",
     marginTop: 28,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     borderTopRightRadius: 30.57904,
     borderTopLeftRadius: 30.57904,
-    marginTop: "auto",
+    marginTop: 80,
     paddingHorizontal: 30.08,
   },
   avatarPosition: {

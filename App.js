@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-
+import { Text, TextInput } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { OnboardingScreen } from "./src/screens";
 import { TailwindProvider } from "tailwindcss-react-native";
@@ -11,6 +11,10 @@ import { AuthStack } from "./src/components/navigation/AuthStack";
 import { UIStore } from "./src/store/store";
 
 export default function App() {
+  Text.defaultProps = Text.defaultProps || {};
+  Text.defaultProps.maxFontSizeMultiplier = 1.2;
+  TextInput.defaultProps = Text.defaultProps || {};
+  TextInput.defaultProps.maxFontSizeMultiplier = 1.2;
   const [isFirstLaunch, setFirstLaunch] = useState(true);
   const isAuthenticated = UIStore.useState((state) => state.isAuthenticated);
 
