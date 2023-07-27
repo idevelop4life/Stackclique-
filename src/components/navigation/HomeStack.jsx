@@ -8,7 +8,7 @@ import {
   CourseDetailsScreen,
 } from "../../screens";
 import Header from "../Learn/Header";
-import { CustomHeader } from "..";
+import { CustomHeader } from "../../components";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
