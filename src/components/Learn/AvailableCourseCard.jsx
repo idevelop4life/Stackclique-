@@ -1,9 +1,23 @@
-import { StyleSheet, Text, View, useWindowDimensions, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+  ImageBackground,
+  Pressable,
+} from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { theme } from "../theme/theme";
 import { Avatar, Button } from "../../components";
-export default function AvailableCourseCard() {
+import { AntDesign } from "@expo/vector-icons";
+
+export default function AvailableCourseCard({
+  showButton,
+  moduleNumber,
+  showRequiredLevel,
+  showCheckIcon,
+}) {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();
   return (
@@ -25,6 +39,18 @@ export default function AvailableCourseCard() {
             />
           </View>
         </View>
+        {showCheckIcon && (
+          <View
+            style={{
+              marginTop: -40,
+              flexDirection: "row",
+              justifyContent: "center",
+              marginBottom: 4,
+            }}
+          >
+            <AntDesign name="checkcircle" color={theme.colors.green} size={30} />
+          </View>
+        )}
         <Text
           style={{
             textTransform: "uppercase",
@@ -36,16 +62,28 @@ export default function AvailableCourseCard() {
         >
           WEB DEVELOPMENT FRONT END
         </Text>
-        <Text style={{ textAlign: "center", lineHeight: 16 }}>
+        <Text
+          style={{ textAlign: "center", lineHeight: 16, color: theme.colors.grey, lineHeight: 20 }}
+        >
           Visual Studio Code is a code editor redefined and optimized for building and debugging
           modern web and cloud applications. Visual Studio Code is free and ...
         </Text>
-        <Text style={{ textAlign: "center", color: theme.colors.green, marginTop: 10 }}>
-          Requirement: Level 3 and above
-        </Text>
-        <View style={{ marginVertical: 14.08 }}>
-          <Button onPress={() => navigation.navigate("Course-Details")}>Learn More</Button>
-        </View>
+        {showRequiredLevel && (
+          <Text style={{ textAlign: "center", color: theme.colors.green, marginTop: 10 }}>
+            Requirement: Level 3 and above
+          </Text>
+        )}
+
+        {showButton && (
+          <View style={{ marginVertical: 14.08 }}>
+            <Button onPress={() => navigation.navigate("Course-Details")}>Learn More</Button>
+          </View>
+        )}
+        {moduleNumber && (
+          <Pressable style={{ flexDirection: "row", justifyContent: "center", marginTop: 8 }}>
+            <Text style={{ color: theme.colors.green }}>Module 1</Text>
+          </Pressable>
+        )}
       </View>
     </View>
   );
@@ -77,6 +115,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30.57904,
     marginTop: 80,
     paddingHorizontal: 30.08,
+    paddingBottom: 8,
   },
   avatarPosition: {
     top: -30,

@@ -11,7 +11,7 @@ export default function LearnScreen() {
     <View style={{ paddingHorizontal: 4, flex: 1 }}>
       <WelcomeMessage />
       <EnrolledCourses />
-      <AvailableCourseCard />
+      <AvailableCourseCard showButton showRequiredLevel />
       <BottomTab height={40}>
         <Text style={{ color: theme.colors.grey }}>How to level up on Stack Clique?</Text>
       </BottomTab>

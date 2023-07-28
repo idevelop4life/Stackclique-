@@ -2,4 +2,5 @@ import { Store } from "pullstate";
 
 export const UIStore = new Store({
   isAuthenticated: false,
+  showModules: true,
 });

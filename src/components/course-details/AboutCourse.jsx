@@ -2,9 +2,16 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { theme } from "../theme/theme";
 import { EvilIcons } from "@expo/vector-icons";
+import { UIStore } from "../../store/store";
 
-export default function AboutCourse({ showModlues, setShowModules }) {
+export default function AboutCourse() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const showModules = UIStore.useState((state) => state.showModules);
+  const setShowModules = (value) => {
+    UIStore.update((state) => {
+      state.showModules = value;
+    });
+  };
   return (
     <View style={styles.container}>
       <Text style={{ fontWeight: 600 }}>About Course</Text>
@@ -48,8 +55,8 @@ export default function AboutCourse({ showModlues, setShowModules }) {
             style={[
               styles.modulesText,
               {
-                borderBottomWidth: showModlues ? 2 : 0,
-                color: showModlues ? theme.colors.primaryColor : theme.colors.grey,
+                borderBottomWidth: showModules ? 2 : 0,
+                color: showModules ? theme.colors.primaryColor : theme.colors.grey,
               },
             ]}
           >
@@ -61,8 +68,8 @@ export default function AboutCourse({ showModlues, setShowModules }) {
             style={[
               styles.modulesText,
               {
-                borderBottomWidth: !showModlues ? 2 : 0,
-                color: !showModlues ? theme.colors.primaryColor : theme.colors.grey,
+                borderBottomWidth: !showModules ? 2 : 0,
+                color: !showModules ? theme.colors.primaryColor : theme.colors.grey,
               },
             ]}
           >
