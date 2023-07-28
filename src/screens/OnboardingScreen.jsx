@@ -15,6 +15,7 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { StatusBar } from "expo-status-bar";
+import { theme } from "../components/theme/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Font from "expo-font";
 import Board1 from "../../assets/svg/board1.svg";
@@ -108,8 +109,20 @@ export default function OnboardingScreen({ onFinish, onSkip }) {
   const IndicatorButton = ({ active }) => {
     return (
       <View style={styles.indicatorContainer}>
-        <View style={[styles.indicatorButton, { backgroundColor: active ? "#7E0772" : "#1D1F22" }]}>
-          {active && <View style={styles.outerCircle} />}
+        <View
+          style={[
+            styles.outerCircle,
+            {
+              borderWidth: active ? 2 : 0,
+              flex: 1,
+            },
+          ]}
+        >
+          <View
+            style={[styles.indicatorButton, { backgroundColor: active ? "#7E0772" : "#1D1F22" }]}
+          >
+            {/* {active && <View style={styles.outerCircle} />} */}
+          </View>
         </View>
       </View>
     );
@@ -207,6 +220,7 @@ export default function OnboardingScreen({ onFinish, onSkip }) {
       bottom: 50,
     },
     indicatorContainer: {
+      position: "relative",
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
@@ -219,34 +233,33 @@ export default function OnboardingScreen({ onFinish, onSkip }) {
       marginBottom: 20,
     },
     indicatorButton: {
-      width: 5,
-      height: 5,
-      borderRadius: 4,
-      marginHorizontal: 5,
+      width: 6,
+      height: 6,
+      borderRadius: 50,
+      alignSelf: "center",
     },
     outerCircle: {
-      position: "absolute",
-      width: 10,
-      height: 10,
       borderRadius: 50,
-      borderColor: "#7E0772",
-      borderWidth: 1,
+      height: 12,
+      width: 12,
+      flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
-      left: -2.5,
-      bottom: -2.5,
+      padding: 5,
+      position: "relative",
+      borderColor: theme.colors.primaryColor,
     },
-    indicatorButtons: {
-      width: 5,
-      height: 5,
-      borderRadius: 4,
-      marginHorizontal: 5,
-      position: "absolute",
-      left: 160,
-      bottom: 40,
-    },
+    // indicatorButtons: {
+    //   width: 5,
+    //   height: 5,
+    //   borderRadius: 4,
+    //   marginHorizontal: 5,
+    //   position: "absolute",
+    //   left: 160,
+    //   bottom: 40,
+    // },
     greenTitle: {
-      color: "#13B351",
+      color: theme.colors.green,
     },
   });
 
@@ -313,13 +326,10 @@ export default function OnboardingScreen({ onFinish, onSkip }) {
       </ScrollView>
 
       {/* Indicator Buttons */}
-      <View style={styles.indicatorContainer}>
+      <View style={{ flexDirection: "row", justifyContent: "center" }}>
         {Array.from({ length: onboardingData.length }, (_, index) => (
           <IndicatorButton key={index} active={index === currentPage} />
         ))}
-      </View>
-      <View style={styles.indicatorContainers}>
-        <View style={[styles.indicatorButtons, { backgroundColor: "#1D1F22" }]}></View>
       </View>
     </View>
   );
