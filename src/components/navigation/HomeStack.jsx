@@ -47,5 +47,15 @@ export const HomeStack = () => (
         headerBackVisible: false,
       }}
     />
+    <Stack.Screen
+      name="Learning-screen"
+      component={CourseDetailsScreen}
+      options={{
+        headerTitle: (props) => <CustomHeader {...props} />,
+        title: "Intoduction to vs code",
+        headerLeft: () => null,
+        headerBackVisible: false,
+      }}
+    />
   </Stack.Navigator>
 );
