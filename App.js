@@ -3,7 +3,6 @@ import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { theme } from "./src/components/theme/theme";
 import { DrawerStack } from "./src/components/navigation/DrawerStack";
 import { AuthStack } from "./src/components/navigation/AuthStack";
 import OnboardingScreen from "./src/screens/OnboardingScreen";
