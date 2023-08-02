@@ -15,10 +15,8 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 import { StatusBar } from "expo-status-bar";
-import { theme } from "../components/theme/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Font from "expo-font";
-import Board1 from "../../assets/svg/board1.svg";
 // Onboarding data
 const onboardingData = [
   {
