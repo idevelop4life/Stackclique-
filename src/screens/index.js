@@ -7,3 +7,5 @@ export { default as ConnectScreen } from "./HomeScreens/ConnectScreen.jsx";
 export { default as EarnScreen } from "./HomeScreens/EarnScreen.jsx";
 export { default as NotificationScreen } from "./HomeScreens/NotificationScreen.jsx";
 export { default as SearchScreen } from "./HomeScreens/SearchScreen.jsx";
+export { default as CourseDetailsScreen } from "./CourseDetailsScreen.jsx";
+export { default as LearningScreen } from "./HomeScreens/LearningScreen.jsx";

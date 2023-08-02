@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Text, TextInput } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { TailwindProvider } from "tailwindcss-react-native";
@@ -9,6 +10,10 @@ import OnboardingScreen from "./src/screens/OnboardingScreen";
 import { UIStore } from "./src/store/store";
 
 export default function App() {
+  Text.defaultProps = Text.defaultProps || {};
+  Text.defaultProps.maxFontSizeMultiplier = 1.2;
+  TextInput.defaultProps = Text.defaultProps || {};
+  TextInput.defaultProps.maxFontSizeMultiplier = 1.2;
   const [isFirstLaunch, setFirstLaunch] = useState(true);
   const isAuthenticated = UIStore.useState((state) => state.isAuthenticated);
 
@@ -50,9 +55,7 @@ export default function App() {
   return (
     <TailwindProvider>
       <StatusBar style="auto" />
-      <NavigationContainer>
-        {isAuthenticated ? <DrawerStack /> : <AuthStack />}
-      </NavigationContainer>
+      <NavigationContainer>{isAuthenticated ? <DrawerStack /> : <AuthStack />}</NavigationContainer>
     </TailwindProvider>
   );
 }

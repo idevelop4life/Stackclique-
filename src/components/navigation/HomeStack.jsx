@@ -6,9 +6,10 @@ import {
   NotificationScreen,
   SearchScreen,
   CourseDetailsScreen,
+  LearningScreen,
 } from "../../screens";
-import Header from "../HomeScreen/Header";
-import { CustomHeader } from "..";
+import Header from "../Learn/Header";
+import { CustomHeader } from "../../components";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,7 @@ export const HomeStack = () => (
       options={{
         headerTitle: (props) => <CustomHeader {...props} />,
         headerLeft: () => null,
+        headerBackVisible: false,
       }}
     />
     <Stack.Screen
@@ -43,6 +45,17 @@ export const HomeStack = () => (
         headerTitle: (props) => <CustomHeader {...props} />,
         title: "Course Details",
         headerLeft: () => null,
+        headerBackVisible: false,
+      }}
+    />
+    <Stack.Screen
+      name="Learning-screen"
+      component={LearningScreen}
+      options={{
+        headerTitle: (props) => <CustomHeader {...props} />,
+        title: "Intoduction to vs code",
+        headerLeft: () => null,
+        headerBackVisible: false,
       }}
     />
   </Stack.Navigator>

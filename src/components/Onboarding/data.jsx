@@ -1,21 +1,25 @@
+import Board1 from "../../../assets/svg/board1.svg";
+import Board2 from "../../../assets/svg/board2.svg";
+import Board3 from "../../../assets/svg/board3.svg";
+
 const data = [
   {
     id: 1,
     skip: "Skip",
-    image: require("../../../assets/board1.png"),
+    image: <Board1 />,
     title: "Endless Possibilities",
     text: "Connect, Learn and grow with our vibrant community around the globe",
   },
   {
     id: 2,
     skip: "Skip",
-    image: require("../../../assets/board22.png"),
+    image: <Board2 />,
     title: "Community",
     text: "Join like-mided individuals, share ideas, and collaborate on projects",
   },
   {
     id: 3,
-    image: require("../../../assets/board3.png"),
+    image: <Board3 />,
     title: "Collaborate and Create",
     text: "Expand Your horizons in our inclusive and enriching learning community",
   },
