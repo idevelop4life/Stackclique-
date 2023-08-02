@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import BottomTab from "../components/Learn/BottomTab";
 import { Button } from "../components";
 import CourseOverview from "../components/course-details/CourseOverview";
@@ -8,6 +9,7 @@ import AvailableCourseCard from "../components/Learn/AvailableCourseCard";
 
 export default function CourseDetailsScreen() {
   const showModules = UIStore.useState((state) => state.showModules);
+  const navigation = useNavigation();
   return (
     <View style={{ flex: 1, paddingHorizontal: 10.08 }}>
       <CourseOverview />
@@ -21,7 +23,7 @@ export default function CourseDetailsScreen() {
       )}
       <BottomTab>
         <View style={{ width: 250 }}>
-          <Button>Enroll</Button>
+          <Button onPress={() => navigation.navigate("Learning-screen")}>Enroll</Button>
         </View>
       </BottomTab>
     </View>

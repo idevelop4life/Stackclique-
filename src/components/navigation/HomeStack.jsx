@@ -6,6 +6,7 @@ import {
   NotificationScreen,
   SearchScreen,
   CourseDetailsScreen,
+  LearningScreen,
 } from "../../screens";
 import Header from "../Learn/Header";
 import { CustomHeader } from "../../components";
@@ -49,7 +50,7 @@ export const HomeStack = () => (
     />
     <Stack.Screen
       name="Learning-screen"
-      component={CourseDetailsScreen}
+      component={LearningScreen}
       options={{
         headerTitle: (props) => <CustomHeader {...props} />,
         title: "Intoduction to vs code",
