@@ -208,12 +208,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  indicatorContainers: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
   indicatorButton: {
     width: 5,
     height: 5,
@@ -231,15 +225,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     left: -2.5,
     bottom: -2.5,
-  },
-  indicatorButtons: {
-    width: 5,
-    height: 5,
-    borderRadius: 4,
-    marginHorizontal: 5,
-    position: 'absolute',
-    left: 160,
-    bottom: 40,
   },
   greenTitle: {
     color: '#13B351',
@@ -313,9 +298,6 @@ const styles = StyleSheet.create({
         {Array.from({ length: onboardingData.length }, (_, index) => (
           <IndicatorButton key={index} active={index === currentPage} />
         ))}
-      </View>
-      <View style={styles.indicatorContainers}>
-      <View style={[styles.indicatorButtons, {backgroundColor:'#1D1F22'}]}></View>
       </View>
     </View>
   );

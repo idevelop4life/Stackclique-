@@ -1,75 +1,178 @@
-import { StyleSheet, Text, View, ScrollView, SafeAreaView, Image } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import CustomSwitch from '../components/LogIn/CustomSwitch'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import PhoneBox from '../components/SignUp/PhoneBox';
-import EmailBox from '../components/SignUp/EmailBox';
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  SafeAreaView,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
+import { useForm} from "react-hook-form";
+import { MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { CustomInput } from "../components";
 
 const SignUpScreen = () => {
+  // Initialize the useForm hook from react-hook-form
+  const { 
+    control, 
+    handleSubmit, 
+    formState: errors
+  } = useForm();
+  // Get the navigation object from React Navigation
+  const navigation = useNavigation();
 
-  // Switch Function 
-  const [phoneTab, setPhoneTab ] = useState(1);
-  const [emailTab , setEmailTab ] = useState(2);
-  const onSelectSwitch = (value) => {
-    setPhoneTab(value);
+  // State for the checkbox status
+  const [isChecked, setIsChecked] = useState(false);
+
+  // Function to handle checkbox click
+  const handleCheckboxClick = () => {
+    setIsChecked(!isChecked);
   };
-  // Func First Login Text 
-  const [isFirstLogin, setFirstLogin] = useState(false);
-  useEffect(() => {
-    AsyncStorage.getItem("alreadyLogin").then(value => {
-      if(value === null){
-        AsyncStorage.setItem("alreadyLogin", "true");
-        setFirstLogin(true);
-      }else{
-        setFirstLogin(false)
-      }
-    })
-  }, [])
+
+  const onSubmit = (data) => {
+    console.log(data)
+    navigation.navigate('LogIn')
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-        <View style={{paddingTop: 50,}}>
-          <Image source={require("../../assets/Wordmark.png")} style={{width: "85%", height: 50, alignSelf: 'center',}}/>
-        </View>
-        <View style={{paddingTop: 50,}}>
-          <Text style={styles.text}>Sign up</Text>
-          {!isFirstLogin ?(
-            <Text style={{color: 'gray', fontSize: 16, fontWeight: '500', padding: 10}}>
-              You have zero regrets joining the best community in 
-              the world, tailored for your personal growth.
-            </Text>
-          ): 
-            <Text style={{color: 'gray', fontSize: 18, fontWeight: '500', padding: 10}}>
-              Welcome Back!
-            </Text>
-          }
-        </View>
-        <ScrollView style={{padding: 10}}>
-        {/* <View style={{padding: 10, flex: -1}}> */}
-          <CustomSwitch 
-            selectionMode={1} 
-            switch1={'Phone Number'}
-            switch2={'Email'}
-            onSelectSwitch={onSelectSwitch}
+      <View style={{ paddingTop: 50 }}>
+        <Image
+          source={require("../../assets/Wordmark.png")}
+          style={{ width: "85%", height: 50, alignSelf: "center" }}
+        />
+      </View>
+      <View style={{ paddingTop: 20 }}>
+        <Text style={styles.text}>Create an account</Text>
+        <Text style={{ color: 'gray', fontSize: 16, fontWeight: '500', padding: 10 }}>
+          You have zero regrets joining the best community in 
+          the world, tailored for your personal growth.
+        </Text>
+      </View>
+      {/* Use KeyboardAvoidingView to adjust layout when the keyboard appears */}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      >
+        <ScrollView style={{ padding: 10 }}>
+          {/* Username Input */}
+          <CustomInput
+            name="Username"
+            placeholder={'Enter your username'}
+            keyboardType="name-phone-pad"
+            control={control}
+            rules={{ 
+              required: '* Username is required!', 
+              minLength: {value: 4, message: '* Username should be minimum 4 characters long!'},
+              maxLength: {value: 12, message: '* Username should be maximum 12 characters long!'}
+            }}
+            Icon={() => <MaterialCommunityIcons name="account" size={25} color="#7E0772"/>}
           />
-        {/* </View> */}
-          {phoneTab == 1 && <PhoneBox/>}
-          {phoneTab == 2 && <EmailBox/>}
-        </ScrollView>
-    </SafeAreaView>
-  )
-}
+          {/* Email Input */}
+          <CustomInput
+            name="Email"
+            placeholder={'Enter your email address'}
+            keyboardType="email-address"
+            control={control}
+            rules={{
+              required: '* Email address is required!',
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                message: '* Invalid email address!',
+              },
+            }}
+            Icon={() => <MaterialIcons name="email" size={25} color="#7E0772"/>}
+          />
+          {/* Password Input */}
+          <CustomInput
+            name="Password"
+            placeholder={'Enter your password'}
+            control={control}
+            secureTextEntry={true}
+            rules={{ 
+              required: '* Kindly enter your password!', 
+              minLength: {value: 8, message: '* Password should be minimum 8 characters long!'
+            }}}
+            Icon={() => <FontAwesome name="key" size={24} color="#7E0772"/>}
+          />
 
-export default SignUpScreen
+          {/* Checkbox for Terms & Conditions */}
+          <View style={{ flexDirection: "row", alignItems: "center", marginTop: 20 }}>
+            <TouchableOpacity onPress={handleCheckboxClick}>
+              <View
+                style={{
+                  width: 20,
+                  height: 20,
+                  borderRadius: 5,
+                  borderWidth: 2,
+                  borderColor: "#7E0772",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginRight: 10,
+                  marginLeft: 5,
+                  backgroundColor: isChecked ? "#7E0772" : "transparent",
+                }}
+              >
+                {isChecked && (
+                  <MaterialIcons name="check" size={16} color="#FFFFFF" />
+                )}
+              </View>
+            </TouchableOpacity>
+            <Text style={{ fontSize: 15, fontWeight: "700", color: "black" }}>
+              I agree to the{" "}
+              <Text style={{ color: "#7E0772" }}>Terms & Conditions</Text>
+            </Text>
+          </View>
+
+          {/* Sign Up button */}
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={handleSubmit(onSubmit)}
+            style={{
+              marginTop: 50,
+              backgroundColor: isChecked ? "#7E0772" : "#CCCCCC", // Set a different color for the disabled state
+              paddingVertical: 15,
+              borderRadius: 50,
+              alignItems: "center",
+              padding: 10,
+            }}
+            disabled={!isChecked} // Disable the button when the checkbox is not checked
+          >
+            <Text style={{ fontSize: 15, fontWeight: "500", color: "#FFFFFF" }}>
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+
+          {/* LogIn link */}
+          <View style={{ alignSelf: 'center', marginTop: 50, flexDirection: "row" }}>
+            <Text style={{ fontSize: 15, fontWeight: '700', color: 'black' }}>Already have an account? </Text>
+            <TouchableOpacity activeOpacity={0.8} style={{ alignSelf: 'center' }} onPress={() => { navigation.navigate('LogIn') }}>
+              <Text style={{ fontSize: 15, fontWeight: '500', color: '#7E0772' }}>Click here to LogIn</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+};
+
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFEFEF',
+    backgroundColor: "#EFEFEF",
   },
   text: {
     fontSize: 30,
-    fontWeight: '800',
-    color: 'black',
-    padding: 10
-  }
-})
+    fontWeight: "800",
+    color: "black",
+    padding: 10,
+  },
+});
