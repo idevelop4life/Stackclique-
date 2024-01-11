@@ -1,13 +1,18 @@
-import { LoginScreen, SignUpScreen } from "../../screens";
+import { LoginScreen, SignUpScreen, TermsAndCondition } from "../../screens";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { theme } from "../theme/theme";
 const Stack = createNativeStackNavigator();
 
 export const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="LogIn" screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="LogIn" component={LoginScreen} />
-      <Stack.Screen name="SignUp" component={SignUpScreen} />
-      <Stack.Screen name="Home" component={SignUpScreen} />
+    <Stack.Navigator>
+      <Stack.Screen name="LogIn" component={LoginScreen} options={{ headerShown: false}}/>
+      <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false}}/>
+      <Stack.Screen name="Terms & Conditions" component={TermsAndCondition} options={{
+        title: "StackClique - Terms & Conditions",
+        headerTitleStyle: {color:theme.colors.primaryColor,},
+        headerBackVisible: true,
+      }}/>
     </Stack.Navigator>
   );
 };

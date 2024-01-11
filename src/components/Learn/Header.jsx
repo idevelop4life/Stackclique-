@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 const NotificationNumberIndicator = () => {
   return (
     <View style={styles.notificationIcon}>
-      <Text style={{ color: theme.colors.white, flex: 1, justifyContent: "center", marginTop: -2 }}>
+      <Text style={{ color: theme.colors.white, flex: 1, marginTop: -2, fontSize: 12 }}>
         2
       </Text>
     </View>
@@ -130,7 +130,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderRadius: 50,
     right: 0,
-    top: -5,
+    top: -2,
     alignItems: "center",
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
+    justifyContent: "center",
   },
 });

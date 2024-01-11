@@ -6,22 +6,24 @@ import {
   ScrollView,
   SafeAreaView,
   Image,
-  TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { useForm} from "react-hook-form";
-import { MaterialIcons, MaterialCommunityIcons, FontAwesome} from '@expo/vector-icons';
+import { useForm } from "react-hook-form";
+import { MaterialIcons, MaterialCommunityIcons, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { CustomInput } from "../components";
+import { UIStore } from "../store/store"
+
 
 const SignUpScreen = () => {
   // Initialize the useForm hook from react-hook-form
-  const { 
-    control, 
-    handleSubmit, 
-    formState: errors
+  const {
+    control,
+    handleSubmit,
+    formState: errors,
+    getValues,
   } = useForm();
   // Get the navigation object from React Navigation
   const navigation = useNavigation();
@@ -34,10 +36,22 @@ const SignUpScreen = () => {
     setIsChecked(!isChecked);
   };
 
-  const onSubmit = (data) => {
-    console.log(data)
-    navigation.navigate('LogIn')
-  }
+  // Function to handle form submission
+  const onSubmit = () => {
+    UIStore.update((state) => {
+      state.isAuthenticated = true;
+    });
+  };
+
+  // Function to check if all fields are valid
+  const isFormValid = () => {
+    return Object.keys(errors).every((field) => !errors[field]);
+  };
+
+  // Function to handle input change
+  const handleInputChange = () => {
+    setIsChecked(false); // Reset isChecked when there's an input change
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -50,7 +64,7 @@ const SignUpScreen = () => {
       <View style={{ paddingTop: 20 }}>
         <Text style={styles.text}>Create an account</Text>
         <Text style={{ color: 'gray', fontSize: 16, fontWeight: '500', padding: 10 }}>
-          You have zero regrets joining the best community in 
+          You have zero regrets joining the best community in
           the world, tailored for your personal growth.
         </Text>
       </View>
@@ -67,12 +81,13 @@ const SignUpScreen = () => {
             placeholder={'Enter your username'}
             keyboardType="name-phone-pad"
             control={control}
-            rules={{ 
-              required: '* Username is required!', 
-              minLength: {value: 4, message: '* Username should be minimum 4 characters long!'},
-              maxLength: {value: 12, message: '* Username should be maximum 12 characters long!'}
+            rules={{
+              required: '* Username is required!',
+              minLength: { value: 4, message: '* Username should be minimum 4 characters long!' },
+              maxLength: { value: 12, message: '* Username should be maximum 12 characters long!' }
             }}
-            Icon={() => <MaterialCommunityIcons name="account" size={25} color="#7E0772"/>}
+            Icon={() => <MaterialCommunityIcons name="account" size={25} color="#7E0772" />}
+            onChange={handleInputChange} // Call handleInputChange on input change
           />
           {/* Email Input */}
           <CustomInput
@@ -87,7 +102,8 @@ const SignUpScreen = () => {
                 message: '* Invalid email address!',
               },
             }}
-            Icon={() => <MaterialIcons name="email" size={25} color="#7E0772"/>}
+            Icon={() => <MaterialIcons name="email" size={25} color="#7E0772" />}
+            onChange={handleInputChange} // Call handleInputChange on input change
           />
           {/* Password Input */}
           <CustomInput
@@ -95,11 +111,12 @@ const SignUpScreen = () => {
             placeholder={'Enter your password'}
             control={control}
             secureTextEntry={true}
-            rules={{ 
-              required: '* Kindly enter your password!', 
-              minLength: {value: 8, message: '* Password should be minimum 8 characters long!'
-            }}}
-            Icon={() => <FontAwesome name="key" size={24} color="#7E0772"/>}
+            rules={{
+              required: '* Kindly enter your password!',
+              minLength: { value: 8, message: '* Password should be minimum 8 characters long!' }
+            }}
+            Icon={() => <FontAwesome name="key" size={24} color="#7E0772" />}
+            onChange={handleInputChange} // Call handleInputChange on input change
           />
 
           {/* Checkbox for Terms & Conditions */}
@@ -116,6 +133,7 @@ const SignUpScreen = () => {
                   alignItems: "center",
                   marginRight: 10,
                   marginLeft: 5,
+                  bottom: 5,
                   backgroundColor: isChecked ? "#7E0772" : "transparent",
                 }}
               >
@@ -124,10 +142,12 @@ const SignUpScreen = () => {
                 )}
               </View>
             </TouchableOpacity>
-            <Text style={{ fontSize: 15, fontWeight: "700", color: "black" }}>
+            <Text style={{ fontSize: 15, fontWeight: "700", color: "black", bottom: 5}}>
               I agree to the{" "}
-              <Text style={{ color: "#7E0772" }}>Terms & Conditions</Text>
             </Text>
+            <TouchableOpacity onPress={() => (navigation.navigate('Terms & Conditions'))} style={{bottom: 5}} activeOpacity={0.5}>
+              <Text style={{ color: "#7E0772" }}>Terms & Conditions</Text>
+            </TouchableOpacity>
           </View>
 
           {/* Sign Up button */}
@@ -136,13 +156,13 @@ const SignUpScreen = () => {
             onPress={handleSubmit(onSubmit)}
             style={{
               marginTop: 50,
-              backgroundColor: isChecked ? "#7E0772" : "#CCCCCC", // Set a different color for the disabled state
+              backgroundColor: isChecked && isFormValid() ? "#7E0772" : "#CCCCCC",
               paddingVertical: 15,
               borderRadius: 50,
               alignItems: "center",
               padding: 10,
             }}
-            disabled={!isChecked} // Disable the button when the checkbox is not checked
+            disabled={!isChecked || !isFormValid()}
           >
             <Text style={{ fontSize: 15, fontWeight: "500", color: "#FFFFFF" }}>
               Sign Up

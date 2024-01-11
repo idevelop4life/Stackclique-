@@ -11,7 +11,7 @@ export default function WelcomeMessage() {
   return (
     <View style={styles.MessageContainer}>
       <View style={{ gap: 4 }}>
-        <Text style={styles.nameText}>Hi Nathan</Text>
+        <Text style={styles.nameText}>Hi Ʈ𝖗𝖆𝖉𝖊-ᙢ𝖆𝖗𝖘𝖍𝖆𝖑™⚡𓃵</Text>
         <Text style={{ color: theme.colors.grey, fontSize: 10 }}>
           Learn and grow for free, you only pay with your time.
         </Text>

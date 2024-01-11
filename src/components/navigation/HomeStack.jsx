@@ -53,7 +53,7 @@ export const HomeStack = () => (
       component={LearningScreen}
       options={{
         headerTitle: (props) => <CustomHeader {...props} />,
-        title: "Intoduction to vs code",
+        title: "Introduction to vs code",
         headerLeft: () => null,
         headerBackVisible: false,
       }}

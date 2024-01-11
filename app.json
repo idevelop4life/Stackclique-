@@ -18,7 +18,8 @@
       "./assets/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "requireFullScreen": true
     },
     "android": {
       "adaptiveIcon": {
@@ -32,7 +33,21 @@
     "extra": {
       "eas": {
         "projectId": "8c37abfe-685c-4af6-a3aa-b58956d6b2ec"
-      }
+      },
+      "plugins": [
+        [
+          "expo-screen-orientation",
+          {
+            "initialOrientation": "DEFAULT"
+          }
+        ],
+        [
+          "expo-sensors",
+          {
+            "motionPermission": "Allow $(PRODUCT_NAME) to access your device motion."
+          }
+        ]
+      ]
     },
     "owner": "trademarshal"
   }

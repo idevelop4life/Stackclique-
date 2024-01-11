@@ -4,16 +4,13 @@ import { useForm } from "react-hook-form";
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import { CustomInput } from "../components";
-import {UIStore} from "../store/store"
+import { UIStore } from "../store/store"
 
 const LoginScreen = () => {
-  const { 
-    control, 
-    handleSubmit, 
-    formState: { errors },
-    getValues,
-  } = useForm();
+  // Initialize the useForm hook from react-hook-form
+  const { control, handleSubmit, formState: { errors }, getValues } = useForm();
 
+  // Get the navigation object from React Navigation
   const navigation = useNavigation();
 
   // Function to check if both Email and Password inputs are valid
@@ -27,6 +24,7 @@ const LoginScreen = () => {
     );
   };
 
+  // Function to handle form submission
   const onSubmit = () => {
     UIStore.update((state) => {
       state.isAuthenticated = true;
